@@ -8,16 +8,19 @@ $(function(){
   });
 
   function displayMovies(data){
+    let container = $("#movies");
+
+    container.empty();
     let htmlString = "";
     let imageUrl = getBaseImageUrl();
 
     data['results'].forEach(function(movie){
-      htmlString +=   `<img src= ${imageUrl}/${movie["poster_path"]}>
+      htmlString +=   `<img src= ${movie["poster_path"] == null? "assets/movie-poster.jpg" : imageUrl + "/" + movie["poster_path"]}>
                       <p>${movie["title"]}</p>
                       <p>${movie["overview"]}</p>`;
     });
 
-    $('#movies').append(htmlString);
+    container.append(htmlString);
   }
 
   function getBaseImageUrl(){
@@ -36,4 +39,18 @@ $(function(){
     });
     return url;
   }
+
+  // searching movie feature
+  let form = $("#movie-search");
+  form.submit(function(e){
+    e.preventDefault();
+
+    $.ajax({
+      url: "https://api.themoviedb.org/3/search/movie?api_key=269682043d85ac69d89cdca6988cb2b9",
+      data: form.serialize()
+    })
+    .done(function(data){
+      displayMovies(data);
+    });
+  });
 })
