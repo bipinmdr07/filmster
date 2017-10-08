@@ -15,7 +15,7 @@ $(function(){
     let imageUrl = getBaseImageUrl();
 
     data['results'].forEach(function(movie){
-      htmlString +=   `<img src= ${movie["poster_path"] == null? "assets/movie-poster.jpg" : imageUrl + "/" + movie["poster_path"]}>
+      htmlString +=   `<img src= ${movie["poster_path"] == null? "assets/movie-poster.jpg" : imageUrl + "/" + movie["poster_path"]} data-id="${movie['id']}" class="movie_poster">
                       <p>${movie["title"]}</p>
                       <p>${movie["overview"]}</p>`;
     });
@@ -53,4 +53,34 @@ $(function(){
       displayMovies(data);
     });
   });
+
+  $('#movies').on('click', 'img.movie_poster', function(e){
+    e.preventDefault();
+    let id = $(e.target).data('id');
+
+    $.ajax({
+      url: 'https://api.themoviedb.org/3/movie/' + id + '?',
+      data: { 'api_key': "269682043d85ac69d89cdca6988cb2b9" }
+    })
+    .done(function(data){
+      displayMovie(data);
+    });
+  });
+
+  function displayMovie(data){
+    let container = $("#movies");
+
+    container.empty();
+    let htmlString = "";
+    let imageUrl = getBaseImageUrl();
+
+    movie = data;
+    console.log(movie["overview"])
+
+    htmlString +=   `<img src= ${movie["poster_path"] == null? "assets/movie-poster.jpg" : imageUrl + "/" + movie["poster_path"]} data-id="${movie['id']}" class="movie_poster">
+                    <p>${movie["title"]}</p>
+                    <p>${movie["overview"]}</p>`;
+
+    container.append(htmlString);
+  }
 })
