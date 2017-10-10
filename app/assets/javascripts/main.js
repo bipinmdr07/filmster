@@ -19,9 +19,15 @@ $(function(){
       //                 <p>${movie["title"]}</p>
       //                 <p>${movie["overview"]}</p>`;
 
-      htmlString += '<img src=' + (movie["poster_path"] == null? 'assets/movie-poster.jpg' : (imageUrl + "/" + movie["poster_path"])) + ' data-id=' + movie["id"] + ' class="movie_poster"' + '>' +
-                    '<p>' + movie["title"] + '</p>' +
-                    '<p>' + movie["overview"] + '</p>'
+      htmlString += '<div class="a_movie">' +
+                    '<div class="movie_img">' +
+                    '<img src=' + (movie["poster_path"] == null? 'assets/movie-poster.jpg' : (imageUrl + "/" + movie["poster_path"])) + ' data-id=' + movie["id"] + ' class="movie_poster"' + '>' +
+                    '</div>' +
+                    '<div class="movie_overview">' +
+                    '<p class="movie_title">' + movie["title"] + '</p>' +
+                    '<p>' + movie["overview"] + '</p>' +
+                    '</div>' +
+                    '</div>'
     });
 
     container.append(htmlString);
@@ -84,9 +90,15 @@ $(function(){
     // htmlString +=   `<img src= ${movie["poster_path"] == null? "assets/movie-poster.jpg" : imageUrl + "/" + movie["poster_path"]} data-id="${movie['id']}" class="movie_poster">
     //                 <p>${movie["title"]}</p>
     //                 <p>${movie["overview"]}</p>`;
-    htmlString += '<img src=' + movie["poster_path"] == null? "assets/movie-poster.jpg" :imageUrl + '/' + movie["poster_path"] + ' data-id=' + movie["id"] + ' class="movie_poster">' +
-                  '<p>' + movie["title"] + '</p?' +
-                  '<p>' + movie["overview"] + '</p>'
+    htmlString += '<div class="a_movie">' +
+                  '<div class="movie_img_individual">' +
+                  '<img src=' + (movie["poster_path"] == null? 'assets/movie-poster.jpg' : (imageUrl + "/" + movie["poster_path"])) + ' data-id=' + movie["id"] + ' class="movie_poster"' + '>' +
+                  '</div>' +
+                  '<div class="movie_overview_individual">' +
+                  '<p class="movie_title">' + movie["title"] + '</p>' +
+                  '<p>' + movie["overview"] + '</p>' +
+                  '</div>' +
+                  '</div>'
 
     container.append(htmlString);
   }
