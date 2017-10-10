@@ -1,4 +1,4 @@
-$(function(){
+var$(function(){
   $.ajax({
     url: 'https://api.themoviedb.org/3/search/movie?api_key=269682043d85ac69d89cdca6988cb2b9',
     data: {"query" : "superman"}
@@ -8,11 +8,11 @@ $(function(){
   });
 
   function displayMovies(data){
-    let container = $("#movies");
+    var container = $("#movies");
 
     container.empty();
-    let htmlString = "";
-    let imageUrl = getBaseImageUrl();
+    var htmlString = "";
+    var imageUrl = getBaseImageUrl();
 
     data['results'].forEach(function(movie){
       htmlString +=   `<img src= ${movie["poster_path"] == null? "assets/movie-poster.jpg" : imageUrl + "/" + movie["poster_path"]} data-id="${movie['id']}" class="movie_poster">
@@ -41,7 +41,7 @@ $(function(){
   }
 
   // searching movie feature
-  let form = $("#movie-search");
+  var form = $("#movie-search");
   form.submit(function(e){
     e.preventDefault();
 
@@ -56,7 +56,7 @@ $(function(){
 
   $('#movies').on('click', 'img.movie_poster', function(e){
     e.preventDefault();
-    let id = $(e.target).data('id');
+    var id = $(e.target).data('id');
 
     $.ajax({
       url: 'https://api.themoviedb.org/3/movie/' + id + '?',
@@ -68,11 +68,11 @@ $(function(){
   });
 
   function displayMovie(data){
-    let container = $("#movies");
+    var container = $("#movies");
 
     container.empty();
-    let htmlString = "";
-    let imageUrl = getBaseImageUrl();
+    var htmlString = "";
+    var imageUrl = getBaseImageUrl();
 
     movie = data;
     console.log(movie["overview"])
