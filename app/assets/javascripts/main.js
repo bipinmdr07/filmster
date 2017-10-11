@@ -27,7 +27,7 @@ $(function(){
                     '<p class="movie_title">' + movie["title"] + '</p>' +
                     '<p>' + movie["overview"] + '</p>' +
                     '</div>' +
-                    '</div>'
+                    '</div>';
     });
 
     container.append(htmlString);
@@ -90,6 +90,14 @@ $(function(){
     // htmlString +=   `<img src= ${movie["poster_path"] == null? "assets/movie-poster.jpg" : imageUrl + "/" + movie["poster_path"]} data-id="${movie['id']}" class="movie_poster">
     //                 <p>${movie["title"]}</p>
     //                 <p>${movie["overview"]}</p>`;
+    formString =  `<form id="rating-form" action="/reviews" method="POST">
+                    <input type="hidden" name="tmdb_id" value=${movie["id"]} />
+                    <input type="hidden" name="authenticity_token" value=${window._token} />
+                    <textarea name="review[comment]" class="form-control" placeholder="Your movie review" />
+                    <br>
+                    <input type="submit" class="btn btn-success pull-right"/>
+                  </form>`;
+
     htmlString += '<div class="a_movie">' +
                   '<div class="movie_img_individual">' +
                   '<img src=' + (movie["poster_path"] == null? 'assets/movie-poster.jpg' : (imageUrl + "/" + movie["poster_path"])) + ' data-id=' + movie["id"] + ' class="movie_poster"' + '>' +
@@ -98,7 +106,11 @@ $(function(){
                   '<p class="movie_title">' + movie["title"] + '</p>' +
                   '<p>' + movie["overview"] + '</p>' +
                   '</div>' +
-                  '</div>'
+                  '<br>' +
+                  formString +
+                  '</div>';
+
+
 
     container.append(htmlString);
   }

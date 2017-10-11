@@ -6,6 +6,7 @@
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
   <link href="https://fonts.googleapis.com/css?family=Anton|Oxygen" rel="stylesheet">
+  <%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
 </head>
 <body>
   <nav class="navbar navbar-default navbar-fixed-top">
