@@ -29,11 +29,11 @@ ActiveRecord::Schema.define(version: 20171010142645) do
     t.string   "average_vote"
     t.string   "vote_count"
     t.string   "poster"
-    t.string   "homepage"
+    t.string   "homepage",     default: "No homepage"
     t.string   "tmdb_id"
     t.string   "imdb_id"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
   add_index "movies", ["tmdb_id"], name: "index_movies_on_tmdb_id", using: :btree

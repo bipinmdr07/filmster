@@ -13,7 +13,7 @@ class CreateMovies < ActiveRecord::Migration
       t.string :average_vote
       t.string :vote_count
       t.string :poster
-      t.string :homepage
+      t.string :homepage, default: 'No homepage'
       t.string :tmdb_id
       t.string :imdb_id
 
