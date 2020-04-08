@@ -8,7 +8,7 @@ gem 'pg', '0.20'
 # Use SCSS for stylesheets
 gem 'bootstrap-sass'
 gem 'sass-rails', '~> 5.0'
-gem 'devise', '~> 4.3'
+gem 'devise', '~> 4.7'
 gem 'carrierwave'
 gem 'themoviedb-api'
 
